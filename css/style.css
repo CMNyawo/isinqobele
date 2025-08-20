@@ -29,7 +29,7 @@ body {
 
 /* HEADER */
 .site-header {
-  position: sticky;
+  
   top: 0;
   background: linear-gradient(135deg, var(--primary-color), #1f1a3d);
   padding: 70px 20px 30px;
@@ -37,13 +37,27 @@ body {
   border-bottom: 4px solid var(--secondary-color);
   box-shadow: var(--shadow);
   backdrop-filter: blur(var(--blur));
-  animation: gradientShift 8s ease infinite;
+  
+  /* Make gradient animate + whole block move */
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite, moveHeader 6s ease-in-out infinite;
 }
 
+/* Gradient shift animation (kept as is) */
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+} 
+
+/* Move the entire header up & down */
+@keyframes moveHeader {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px); /* moves whole header up */
+  }
 }
 
 .logo-top-left {
@@ -78,12 +92,17 @@ body {
 
 /* NAVIGATION */
 nav {
+  position: fixed;
   background: rgba(46, 41, 78, 0.6);
   backdrop-filter: blur(var(--blur));
   text-align: center;
   padding: 15px 0;
   box-shadow: var(--shadow);
   border-radius: 0 0 var(--radius) var(--radius);
+  left: 0;
+  width: 100%;       /* full width */
+  text-align: center;
+  z-index: 1000;
 }
 
 nav a {
