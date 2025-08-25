@@ -26,6 +26,29 @@ body {
   color: var(--text-color);
   overflow-x: hidden;
 }
+/* Header background */
+.site-header {
+  background-color: #0a1a3f; /* Navy background */
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: white;
+}
+
+/* Logo styling */
+.logo-top-left .logo {
+  background: transparent;   /* removes any square background */
+  border-radius: 50%;        /* makes logo round (if you want it circular) */
+  height: 80px;              /* adjust logo size */
+  width: auto;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Change logo color on hover */
+.logo-top-left .logo:hover {
+  filter: hue-rotate(180deg) brightness(1.2); 
+  transform: scale(1.05); /* small zoom effect */
+}
 
 /* HEADER */
 .site-header {
@@ -329,3 +352,4 @@ footer {
   border-top: 3px solid var(--secondary-color);
   box-shadow: inset 0 5px 12px rgba(0,0,0,0.25);
 }
+
