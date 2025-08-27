@@ -37,7 +37,7 @@ body {
   box-shadow: var(--shadow);
   backdrop-filter: blur(var(--blur));
 
-  /* Background with navy + logo */
+  /* Gradient + Logo as background layers */
   background: 
     url("Images/logo/isinqobele (p).png") no-repeat 20px 10px, /* logo */
     linear-gradient(135deg, var(--primary-color), #1f1a3d);    /* navy background */
@@ -46,43 +46,56 @@ body {
   animation: gradientShift 8s ease infinite, moveHeader 6s ease-in-out infinite;
 }
 
-/* Animate gradient */
+/* Gradient animation */
 @keyframes gradientShift {
-  0% { background-position: 20px 10px, 0% 50%; }
-  50% { background-position: 20px 10px, 100% 50%; }
+  0%   { background-position: 20px 10px, 0% 50%; }
+  50%  { background-position: 20px 10px, 100% 50%; }
   100% { background-position: 20px 10px, 0% 50%; }
 }
 
-/* Move whole header */
+/* Move header animation */
 @keyframes moveHeader {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  50%      { transform: translateY(-15px); }
 }
 
-/* Change logo color effect (invert/sepia makes it recolor) */
-.site-header {
-  filter: brightness(0) invert(1); /* logo appears white on navy */
+/* --- LOGO COLOR EFFECT --- */
+.site-header::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 110px;
+  height: 110px;
+  background: url("Images/logo/isinqobele (p).png") no-repeat center/contain;
+  filter: brightness(0) invert(1); /* logo white */
+  transition: filter 1s ease;
+  z-index: 2;
 }
 
-.site-header:hover {
+/* Change logo color on hover */
+.site-header:hover::before {
   filter: brightness(0) invert(0.6) sepia(1) hue-rotate(200deg) saturate(4);
-  /* changes logo color dynamically */
 }
 
+/* Text styles (stay visible now) */
 .header-content h1 {
   font-size: 2.9rem;
   color: #fff;
   letter-spacing: 3px;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   font-weight: 700;
+  position: relative;
+  z-index: 3;
 }
 
 .header-content p {
   font-size: 1.25rem;
   color: #eaeaea;
   margin-top: 12px;
+  position: relative;
+  z-index: 3;
 }
-
 /* NAVIGATION */
 nav {
   position: fixed;
@@ -322,6 +335,7 @@ footer {
   border-top: 3px solid var(--secondary-color);
   box-shadow: inset 0 5px 12px rgba(0,0,0,0.25);
 }
+
 
 
 
